@@ -2,13 +2,13 @@ export {memoize};
 
 function memoize(func) {
     var cache = {};
-    return chai.spy(function () {
+    return function () {
         var key = keyGen(arguments);
         if (!(key in cache)) {
             cache[key] = func.apply(this, arguments);
         }
         return cache[key];
-    });
+    };
 }
 function keyGen(value) {
     var h = "";
